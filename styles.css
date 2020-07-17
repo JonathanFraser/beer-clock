@@ -1,0 +1,21 @@
+body {
+    background-color: gray;
+    
+    
+    align-self: center;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+
+h1 {
+    margin: auto;
+    width: 50%; 
+    color: springgreen;
+    font-size: 42;
+}
+
+div#clock {
+    font-size: 100;
+    color: goldenrod;
+    margin: auto;
+    width: 50%;
+}
