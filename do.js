@@ -1,23 +1,51 @@
 
-function timeuntil(el) {
-    var x = new Date()
-    var day = x.getDay()
-    var daysUntilFriday = (12 - day) % 7
-    x.setDate(daysUntilFriday + x.getDate())
-    x.setHours(17, 0, 0, 0)
-    duration = x - new Date()
-    if (duration < 0 || day === 0 || day === 6) {
-        el.innerHTML = "How about an IPA?"
-        return
+class CountDownClock extends HTMLElement {
+    constructor() {
+        super();
+        this._shadowRoot = this.attachShadow({mode: 'open'});
+        var g = document.createElement('div');
+        g.setAttribute("id", "countdown");
+        this._shadowRoot.appendChild(g);
+        this.clock = this._shadowRoot.getElementById("countdown");
+        var sethour = this.getAttribute("hour");
+
     }
-    dur = new Date(duration)
-    el.innerHTML = dur.toISOString().substr(11, 8)
+
+    static get observedAttributes() {
+        return ['hour'];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {}
+
+    connectedCallback() {
+
+        if (!this.hasAttribute('hour')) {
+            this.setAttribute('hour', 17);
+        }
+        this.timerIndex = setInterval(this.timeuntil.bind(this), 400);
+    }
+
+    disconnectedCallback() {
+        if (this.timerIndex) {
+            clearInterval(this.timerIndex);
+        }
+    }
+
+    timeuntil() {
+        var x = new Date();
+        var day = x.getDay();
+        var daysUntilFriday = (12 - day) % 7;
+        x.setDate(daysUntilFriday + x.getDate());
+        var tgt = +this.getAttribute('hour');
+        x.setHours(tgt, 0, 0, 0);
+        var duration = x - new Date();
+        if (duration < 0 || day === 0 || day === 6) {
+            this.clock.innerHTML = "How about an IPA?";
+            return;
+        }
+        var dur = new Date(duration);
+        this.clock.innerHTML = dur.toISOString().substr(11, 8);
+    }
 }
 
-function run() {
-    clock = document.getElementById("clock");
-    function f() {
-        return timeuntil(clock)
-    }
-    setInterval(f, 100)
-}
+window.customElements.define('count-down', CountDownClock);

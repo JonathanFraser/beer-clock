@@ -1,8 +1,7 @@
 body {
     background-color: gray;
-    
-    
     align-self: center;
+    text-align: center;
     font-family: "Comic Sans MS", cursive, sans-serif;
   }
 
@@ -13,7 +12,7 @@ h1 {
     font-size: 42;
 }
 
-div#clock {
+count-down {
     font-size: 100;
     color: goldenrod;
     margin: auto;
