@@ -1,9 +1,19 @@
 body {
-    background-color: gray;
+    background-color: black;
     align-self: center;
     text-align: center;
     font-family: "Comic Sans MS", cursive, sans-serif;
   }
+
+.wrapper {
+    background-color: gray;
+    margin: auto;
+    width: 500px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: darkred;
+    border-radius: 30px;
+}
 
 h1 {
     margin: auto;
@@ -14,7 +24,6 @@ h1 {
 
 count-down {
     font-size: 100;
-    color: goldenrod;
-    margin: auto;
+    color: goldenrod; 
     width: 50%;
 }

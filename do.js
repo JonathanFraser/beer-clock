@@ -2,7 +2,7 @@
 class CountDownClock extends HTMLElement {
     constructor() {
         super();
-        this._shadowRoot = this.attachShadow({mode: 'open'});
+        this._shadowRoot = this.attachShadow({ mode: 'open' });
         var g = document.createElement('div');
         g.setAttribute("id", "countdown");
         this._shadowRoot.appendChild(g);
@@ -12,10 +12,10 @@ class CountDownClock extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['hour'];
+        return [ 'hour' ];
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {}
+    attributeChangedCallback(name, oldValue, newValue) { }
 
     connectedCallback() {
 
@@ -40,7 +40,7 @@ class CountDownClock extends HTMLElement {
         x.setHours(tgt, 0, 0, 0);
         var duration = x - new Date();
         if (duration < 0 || day === 0 || day === 6) {
-            this.clock.innerHTML = "How about an IPA?";
+            this.clock.innerHTML = "<img src='https://yellowdogbeer.com/yellowpress/wp-content/uploads/2019/11/HIGH-5-RENDER_72DPI.png'></img>";
             return;
         }
         var dur = new Date(duration);
